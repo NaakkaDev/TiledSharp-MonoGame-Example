@@ -19,6 +19,8 @@ namespace TiledSharp_MonoGame_Example
 
         int tileWidth;
         int tileHeight;
+        int tilesetTilesWide;
+        int tilesetTilesHigh;
 
         public Game1()
         {
@@ -53,6 +55,9 @@ namespace TiledSharp_MonoGame_Example
 
             tileWidth = map.Tilesets[0].TileWidth;
             tileHeight = map.Tilesets[0].TileHeight;
+
+            tilesetTilesWide = tileset.Width / tileWidth;
+            tilesetTilesHigh = tileset.Height / tileHeight;
         }
 
         /// <summary>
@@ -96,15 +101,15 @@ namespace TiledSharp_MonoGame_Example
                 }
                 else {
                     int tileFrame = gid - 1;
-                    int column = tileFrame % (tileset.Width / tileWidth);
-                    int row = tileFrame / (tileset.Height / tileHeight);
+                    int column = tileFrame % tilesetTilesWide;
+                    int row = (tileFrame+1 > tilesetTilesWide) ? tileFrame - column * tilesetTilesWide : 0;
 
                     float x = (i % map.Width) * map.TileWidth;
                     float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
 
-                    Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, 32, 32);
+                    Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
 
-                    spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, 32, 32), tilesetRec, Color.White);
+                    spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White);
                 }
             }
 
