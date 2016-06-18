@@ -102,7 +102,7 @@ namespace TiledSharp_MonoGame_Example
                 else {
                     int tileFrame = gid - 1;
                     int column = tileFrame % tilesetTilesWide;
-                    int row = (tileFrame+1 > tilesetTilesWide) ? tileFrame - column * tilesetTilesWide : 0;
+                    int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
 
                     float x = (i % map.Width) * map.TileWidth;
                     float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
