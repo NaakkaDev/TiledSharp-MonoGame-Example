@@ -1,3 +1,5 @@
+Check the [Newer example that works with MonoGame 3.8](https://github.com/Temeez/TiledCS-MonoGame-Example).
+
 # [TiledSharp](https://github.com/marshallward/TiledSharp) [MonoGame](https://github.com/mono/MonoGame) Example
 
 This example shows how simple it is to draw a (TMX) map made with [Tiled](http://www.mapeditor.org/) in MonoGame project.
